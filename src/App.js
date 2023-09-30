@@ -151,7 +151,7 @@ function App() {
       <body className="App-body">
         <Routes>
           <Route 
-            path="/login" 
+            path="/" 
             element={
                 <LoginForm onRegister={handleRegister} />
             }

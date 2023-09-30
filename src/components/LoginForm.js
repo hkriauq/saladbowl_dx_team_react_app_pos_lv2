@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 function LoginForm({ onRegister }) {
   const initialValues = { username: "", mailAddress: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErros, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
@@ -22,13 +22,13 @@ function LoginForm({ onRegister }) {
   };
 
   useEffect(() => {
-    console.log(formErros);
+    console.log(formErrors);
     //エラーなしでかつ送信されているなら。
-    if (Object.keys(formErros).length === 0 && isSubmit) {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     } else {
     }
-  }, [formErros]);
+  }, [formErrors]);
 
   //バリデーションチェック
   const validate = (values) => {
@@ -81,7 +81,7 @@ function LoginForm({ onRegister }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <p className="errorMsg">{formErros.mailAddress}</p>
+          <p className="errorMsg">{formErrors.mailAddress}</p>
 
           <div className="formField">
             <label>パスワード</label>
@@ -93,7 +93,7 @@ function LoginForm({ onRegister }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <p className="errorMsg">{formErros.password}</p>
+          <p className="errorMsg">{formErrors.password}</p>
           <Button 
             className="submitButton"
             onClick={(e) => {
@@ -101,10 +101,10 @@ function LoginForm({ onRegister }) {
               onRegister(); // 登録ボタンクリック時にonRegisterコールバックを実行
             }}
           >ログイン</Button>
-          {Object.keys(formErros).length === 0 && isSubmit && (
+          {Object.keys(formErrors).length === 0 && isSubmit && (
             <div className="msgOk">ログインに成功しました</div>
           )}
-          <Button>新規登録する</Button>
+          <Button>新規登録</Button>
         </div>
       </form>
     </div>
