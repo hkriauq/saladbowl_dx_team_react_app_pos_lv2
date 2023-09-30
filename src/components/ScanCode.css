@@ -1,0 +1,15 @@
+
+.drawingBuffer{
+    width: 450px;
+    height: 20px;
+}
+
+#preview video {
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  
