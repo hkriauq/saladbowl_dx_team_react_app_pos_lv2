@@ -60,10 +60,9 @@
 .Container_code h5,
 .Container_add h5,
 .Container_cart h5{
-  font-size: 18px; 
-  color:var(--s-maincolor);
-  font-weight: bold;
-  margin: 20px ;
+  color:var(--s-maincolor)!important;
+  font-size: 18px;
+  text-align: center;
 }
 
 .Container_code input[type="text"] {
@@ -102,8 +101,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  width: 400px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   background-color:var(--s-sub2color) ;
   display: flex;
   align-items: center;
@@ -116,7 +115,7 @@
 
 .TotalAmountModalContent {
   background-color: white;
-  padding: 50px 80px;
+  padding: 80px 150px;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -138,6 +137,13 @@
 }
 
 .TotalAmountModal h5 {
-  color:var(--s-maincolor);
+  color:var(--s-maincolor)!important;
   font-weight: bold;
+  font-size: 18px; 
+}
+
+.TotalAmountModal h1 {
+  color:var(--s-maincolor)!important;
+  font-weight: bold;
+  font-size: 50px; 
 }

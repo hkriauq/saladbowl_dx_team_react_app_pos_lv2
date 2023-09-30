@@ -20,6 +20,7 @@ function App() {
   const [isTotalAmountModalOpen, setTotalAmountModalOpen] = useState(false);
   const [isScanning, setIsScanning] = useState(false); // スキャン中かどうかのステート
   const [showCodeScan, setShowCodeScan] = useState(false); // バーコード読み込みを表示するステート
+  const [barcodeFromScanCode, setBarcodeFromScanCode] = useState("");
   const navigate = useNavigate();
 
 
@@ -37,6 +38,17 @@ function App() {
     setIsScanning(false); // スキャン中フラグをクリア
     setShowCodeScan(false); // バーコード読み込みを非表示
   };
+
+  useEffect(() => {
+    if (barcodeFromScanCode) {
+      // barcodeFromScanCode の値が得られた場合、inputCode にセット
+      setInputCode(barcodeFromScanCode);
+    } else {
+      // barcodeFromScanCode の値が得られない場合、入力可能にする
+      setInputCode(""); 
+    }
+  }, [barcodeFromScanCode]);
+
 
   // 商品コードを入力した時の関数
   const handleCodeChange = (event) => {
@@ -182,6 +194,7 @@ function App() {
                   {isScanning ? (
                       <ScanCode
                         onBarcodeScanned={(barcode) => {
+                          setBarcodeFromScanCode(barcode);
                         }}
                       />
                     ) : (
@@ -217,7 +230,7 @@ function App() {
                     <div className="TotalAmountModal">
                       <div className="TotalAmountModalContent">
                         <h5>合計金額（税込）</h5>
-                        <h5>{totalAmount}円</h5>
+                        <h1>{totalAmount}円</h1>
                         <h5>Thank You<FavoriteIcon/></h5>
                         <button onClick={handleCloseModal}>閉じる</button>
                       </div>
