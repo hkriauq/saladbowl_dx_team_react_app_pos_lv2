@@ -1,36 +1,27 @@
 
-:root{
-  --s-maincolor: #17594A!important;
-  --s-sub1color: #CECE5A!important;
-  --s-sub2color:#7D7D7D!important;
-  --s-sub3color: #CCCCCC!important;
-  --s-backgroundcolor: white!important;
-  font-family: "Helvetica", sans-serif !important;
-}
- 
 .formContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height:50px ;
-  width: 100%;
+  min-width: 100%;
   margin-top: 20px;
 }
 
 h1 {
   text-align: center;
-  margin: 13px 0;
 }
 
 .formContainer form {
   border: 1px solid var(--s-maincolor);
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
-  margin-left: 20px;
+  margin-left: 10px;
   padding: 30px;
   min-width:450px;
+  align-items: center;
   font-weight: bold;
   background-color:#ffffff; 
   color:var(--s-maincolor);
@@ -78,7 +69,7 @@ button {
   padding: 10px 10px !important;
   width: 150px !important;
   height: 40px !important;
-  margin:10px 10px !important;
+  margin:5px 5px !important;
 }
 
 
