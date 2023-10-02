@@ -1,15 +1,19 @@
-
-.drawingBuffer{
+.drawingBuffer {
     width: 450px;
-    height: 20px;
-}
+    /* height: 20px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  #preview {
+    position: relative;
+  }
 
-#preview video {
+  #preview video {
     width: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
   }
-
   
