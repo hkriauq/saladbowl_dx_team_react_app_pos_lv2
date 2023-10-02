@@ -245,9 +245,9 @@ function App() {
                 {isTotalAmountModalOpen && (
                     <div className="TotalAmountModal">
                       <div className="TotalAmountModalContent">
-                        <h5>合計金額</h5>
+                        <h5>合計金額（税込）</h5>
                         <h1>{totalAmount}円</h1>
-                        <h5>（消費税{total_amount_ex_tax}円）</h5>
+                        <h5>（税抜{total_amount_ex_tax}円）</h5>
                         <h5>Thank You<FavoriteIcon/></h5>
                         <button onClick={handleCloseModal}>閉じる</button>
                       </div>
