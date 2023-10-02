@@ -20,8 +20,8 @@ function App() {
   const [errorMessage1, setErrorMessage1] = useState(""); 
   const [errorMessage2, setErrorMessage2] = useState(""); 
   const [isTotalAmountModalOpen, setTotalAmountModalOpen] = useState(false);
-  const [isScanning, setIsScanning] = useState(false); // スキャン中かどうかのステート
-  const [showCodeScan, setShowCodeScan] = useState(false); // バーコード読み込みを表示するステート
+  const [isScanning, setIsScanning] = useState(false);
+  const [showCodeScan, setShowCodeScan] = useState(false);
   const [barcodeFromScanCode, setBarcodeFromScanCode] = useState("");
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ function App() {
     const codeToSearch = inputCode;
 
     // FastAPIのエンドポイントURLを設定
-    const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
+    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/?code=${codeToSearch}`;
   
     // axiosを使用してFastAPIにリクエストを送信
     axios.get(apiUrl)
@@ -121,7 +121,7 @@ function App() {
   };
 
   // FastAPIの購入時のPOSTエンドポイントURLを設定
-  const api_postUrl = "http://localhost:8000/purchase/";
+  const api_postUrl = "https://webapp-class1to4-6.azurewebsites.net/purchase/";
   
   // 「購入ボタン」を押したときの関数
   const handlePurchase = () => {
