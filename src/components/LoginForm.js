@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import "./LoginForm.css";
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom'; 
 
-function LoginForm({ onRegister }) {
-  const initialValues = { username: "", mailAddress: "", password: "" };
+
+function LoginForm() {
+  const initialValues = {  mailAddress: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     // console.log(e.target.name);
@@ -17,8 +20,13 @@ function LoginForm({ onRegister }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    const errors = validate(formValues);
+    setFormErrors(errors);
     setIsSubmit(true);
+    // バリデーションエラーがない場合に画面遷移
+    if (Object.keys(errors).length === 0) {
+      navigate('/app');
+    }
   };
 
   useEffect(() => {
@@ -36,10 +44,7 @@ function LoginForm({ onRegister }) {
     //半角英数字のみ(空文字OK)
     const regex =
       /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
-    //valueが空ならerrrosの配列に入れる。
-    if (!values.username) {
-      errors.username = "ユーザー名を入力してください。";
-    }
+    //valueが空ならerrorsの配列に入れる。
     if (!values.mailAddress) {
       errors.mailAddress = "メールアドレスを入力してください。";
     } else if (!regex.test(values.mailAddress)) {
@@ -61,8 +66,8 @@ function LoginForm({ onRegister }) {
         <h2>ログイン</h2>
         <hr />
         <div className="uiForm">
-          {/*<div className="formField">
-            <label>ユーザー名</label>
+         {/* <div className="formField">
+            {/*<label>ユーザー名</label>
             <input
               type="text"
               name="username"
@@ -70,7 +75,8 @@ function LoginForm({ onRegister }) {
               value={formValues.username}
               onChange={(e) => handleChange(e)}
             />
-          </div>*/}
+          </div><p className="errorMsg">{formErrors.username}</p>*/}
+
           <div className="formField">
             <label>メールアドレス</label>
             <input
@@ -86,7 +92,7 @@ function LoginForm({ onRegister }) {
           <div className="formField">
             <label>パスワード</label>
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="パスワード"
               value={formValues.password}
@@ -94,17 +100,16 @@ function LoginForm({ onRegister }) {
             />
           </div>
           <p className="errorMsg">{formErrors.password}</p>
-          <Button 
-            className="submitButton"
-            onClick={(e) => {
-              e.preventDefault();
-              onRegister(); // 登録ボタンクリック時にonRegisterコールバックを実行
-            }}
-          >ログイン</Button>
           {Object.keys(formErrors).length === 0 && isSubmit && (
             <div className="msgOk">ログインに成功しました</div>
           )}
-          <Button>新規登録</Button>
+          <Button
+            type = 'submit'
+            className="submitButton"
+     
+          >ログイン</Button>
+
+        <Button onClick={() => navigate('/signup')}>新規登録</Button>
         </div>
       </form>
     </div>

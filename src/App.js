@@ -7,6 +7,7 @@ import ScanCode from './components/ScanCode';
 import axios from 'axios';
 import LoginForm from './components/LoginForm';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import SignUp from './components/SignUp';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [productList, setProductList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [total_amount_ex_tax, setTotalAmountExTax] = useState(0);
   const [errorMessage1, setErrorMessage1] = useState(""); 
   const [errorMessage2, setErrorMessage2] = useState(""); 
   const [isTotalAmountModalOpen, setTotalAmountModalOpen] = useState(false);
@@ -25,8 +27,14 @@ function App() {
 
 
   //1. /login
-  // 登録ボタンをクリックしたときの関数
-  const handleRegister = () => {
+  // ログインボタンをクリックしたときの関数
+  const handleRegister1 = () => {
+    // ここで必要な登録処理を行う
+    // 登録処理が成功した場合に画面遷移
+    navigate("/app");
+  };
+  // 新規登録ボタンをクリックしたときの関数
+  const handleRegister2 = () => {
     // ここで必要な登録処理を行う
     // 登録処理が成功した場合に画面遷移
     navigate("/app");
@@ -127,7 +135,8 @@ function App() {
             setErrorMessage2("商品がカートに入っていません");
           }
           else{
-            setTotalAmount(result.total_amount)
+            setTotalAmount(result.total_amount);
+            setTotalAmountExTax(result.total_amount_ex_tax);
             setTotalAmountModalOpen(true);
             setErrorMessage2("");
           }
@@ -160,12 +169,19 @@ function App() {
         </div>
       </header>
 
-      <body className="App-body">
+      <div className="App-body">
         <Routes>
           <Route 
             path="/" 
             element={
-                <LoginForm onRegister={handleRegister} />
+                <LoginForm onRegister={handleRegister1} />
+            }
+          />
+
+          <Route 
+            path="/signup" 
+            element={
+                <SignUp onRegister={handleRegister2} />
             }
           />
 
@@ -229,8 +245,9 @@ function App() {
                 {isTotalAmountModalOpen && (
                     <div className="TotalAmountModal">
                       <div className="TotalAmountModalContent">
-                        <h5>合計金額（税込）</h5>
+                        <h5>合計金額</h5>
                         <h1>{totalAmount}円</h1>
+                        <h5>（消費税{total_amount_ex_tax}円）</h5>
                         <h5>Thank You<FavoriteIcon/></h5>
                         <button onClick={handleCloseModal}>閉じる</button>
                       </div>
@@ -241,7 +258,7 @@ function App() {
             }
           />
         </Routes>
-      </body>
+      </div>
     </div>
   );
 }
