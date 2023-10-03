@@ -41,16 +41,24 @@ function App() {
   };
 
   //2. /app
-  // 「中止する」ボタンをクリックしたときのハンドラ
+  // 「スキャンする」ボタンをクリックしたときの関数
+  const handleScanClick = () => {
+    setShowCodeScan(true);
+    setIsScanning(true);
+    setInputCode(""); 
+  };
+
+  // 「中止する」ボタンをクリックしたときの関数
   const handleCancelScanClick = () => {
-    setIsScanning(false); // スキャン中フラグをクリア
-    setShowCodeScan(false); // バーコード読み込みを非表示
+    setIsScanning(false);
+    setShowCodeScan(false);
   };
 
   useEffect(() => {
     if (barcodeFromScanCode) {
       // barcodeFromScanCode の値が得られた場合、inputCode にセット
       setInputCode(barcodeFromScanCode);
+      setShowCodeScan(false);
     } else {
       // barcodeFromScanCode の値が得られない場合、入力可能にする
       setInputCode(""); 
@@ -72,6 +80,7 @@ function App() {
     const codeToSearch = inputCode;
 
     // FastAPIのエンドポイントURLを設定
+    //const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
     const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/?code=${codeToSearch}`;
   
     // axiosを使用してFastAPIにリクエストを送信
@@ -110,6 +119,7 @@ function App() {
       setCartItems(prevItems => [...prevItems, newItem]);
       setProductList(prevItems => [...prevItems, Product]);
       setSelectedProduct(null);
+      setIsScanning(false);
       setInputCode("");
       setErrorMessage2("");
     }
@@ -121,8 +131,9 @@ function App() {
   };
 
   // FastAPIの購入時のPOSTエンドポイントURLを設定
+  //const api_postUrl =  "http://localhost:8000/purchase";
   const api_postUrl = "https://webapp-class1to4-6.azurewebsites.net/purchase/";
-  
+
   // 「購入ボタン」を押したときの関数
   const handlePurchase = () => {
     // ポスト処理　True:モーダル表示、False:エラー処理
@@ -198,10 +209,8 @@ function App() {
                     onChange={handleCodeChange}
                   />
                   <Button variant="contained" onClick={handleSearch}>読み込む</Button>
-                  <Button variant="contained" onClick={() => {
-                    setShowCodeScan(true); 
-                    setIsScanning(true); 
-                  }}>スキャンする</Button>
+                  <Button variant="contained" onClick={handleScanClick}>
+                  スキャンする</Button>
                 </div>
 
                 {showCodeScan && (
@@ -245,7 +254,7 @@ function App() {
                 {isTotalAmountModalOpen && (
                     <div className="TotalAmountModal">
                       <div className="TotalAmountModalContent">
-                        <h5>合計金額（税込）</h5>
+                        <h5>合計金額</h5>
                         <h1>{totalAmount}円</h1>
                         <h5>（税抜{total_amount_ex_tax}円）</h5>
                         <h5>Thank You<FavoriteIcon/></h5>
