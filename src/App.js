@@ -24,6 +24,7 @@ function App() {
   const [showCodeScan, setShowCodeScan] = useState(false);
   const [barcodeFromScanCode, setBarcodeFromScanCode] = useState("");
   const navigate = useNavigate();
+  const axiosInstance = axios.create({withCredentials: true});
 
 
   //1. /login
@@ -81,7 +82,7 @@ function App() {
 
     // FastAPIのエンドポイントURLを設定
     //const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
-    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/?code=${codeToSearch}`;
+    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
   
     // axiosを使用してFastAPIにリクエストを送信
     axios.get(apiUrl)
@@ -137,7 +138,7 @@ function App() {
   // 「購入ボタン」を押したときの関数
   const handlePurchase = () => {
     // ポスト処理　True:モーダル表示、False:エラー処理
-    axios
+    axiosInstance
       .post(api_postUrl, productList)
       .then((response) => {
         const result = response.data;
