@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import SignUp from './components/SignUp';
 
 
+
+
+
 function App() {
   const [inputCode, setInputCode] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -81,8 +84,8 @@ function App() {
     const codeToSearch = inputCode;
 
     // FastAPIのエンドポイントURLを設定
-    //const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
-    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
+    const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
+    //const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
   
     // axiosを使用してFastAPIにリクエストを送信
     axios.get(apiUrl)
@@ -132,8 +135,8 @@ function App() {
   };
 
   // FastAPIの購入時のPOSTエンドポイントURLを設定
-  //const api_postUrl =  "http://localhost:8000/purchase";
-  const api_postUrl = "https://webapp-class1to4-6.azurewebsites.net/purchase/";
+  const api_postUrl =  "http://localhost:8000/purchase/";
+  //const api_postUrl = "https://webapp-class1to4-6.azurewebsites.net/purchase/";
 
   // 「購入ボタン」を押したときの関数
   const handlePurchase = () => {
@@ -225,7 +228,7 @@ function App() {
                       />
                     ) : (
                       <div>
-                        <h5>なんで表示されないのーーー！</h5>
+                        <h5>読み込みに失敗しました</h5>
                       </div>
                   )}
                       <Button variant="contained" onClick={handleCancelScanClick}>中止する</Button>

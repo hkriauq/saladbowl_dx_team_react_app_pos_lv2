@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./LoginForm.css";
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom'; 
 
@@ -31,24 +30,24 @@ function LoginForm() {
 
   useEffect(() => {
     console.log(formErrors);
-    //エラーなしでかつ送信されているなら。
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     } else {
     }
   }, [formErrors]);
 
-  //バリデーションチェック
   const validate = (values) => {
     const errors = {};
-    //半角英数字のみ(空文字OK)
-    const regex =
-      /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
-    //valueが空ならerrorsの配列に入れる。
+    const regex2 =
+    /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
+
+    //valueが空ならerrorsの配列に入れる
     if (!values.mailAddress) {
-      errors.mailAddress = "メールアドレスを入力してください。";
-    } else if (!regex.test(values.mailAddress)) {
+      errors.mailAddress = "メールアドレスを入力してください";
+    } else if (!regex2.test(values.mailAddress)) {
       errors.mailAddress = "正しいメールアドレスを入力してください";
+    } else if (values.mailAddress.length > 225) {
+      errors.mailAddress = "メールアドレスは225文字以下で入力してください";
     }
     if (!values.password) {
       errors.password = "パスワードを入力してください。";
@@ -66,17 +65,6 @@ function LoginForm() {
         <h2>ログイン</h2>
         <hr />
         <div className="uiForm">
-         {/* <div className="formField">
-            {/*<label>ユーザー名</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="ユーザー名"
-              value={formValues.username}
-              onChange={(e) => handleChange(e)}
-            />
-          </div><p className="errorMsg">{formErrors.username}</p>*/}
-
           <div className="formField">
             <label>メールアドレス</label>
             <input

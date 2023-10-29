@@ -1,0 +1,127 @@
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:50px ;
+    min-width: 100%;
+    margin-top: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .formContainer form {
+    border: 1px solid var(--s-maincolor);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 30px;
+    min-width:450px;
+    align-items: center;
+    font-weight: bold;
+    background-color:#ffffff; 
+    color:var(--s-maincolor);
+  }
+  
+  .uiForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: auto;
+  }
+  
+  .formField {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .formField input {
+    border: 1px solid var(--s-sub2color);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+
+  .formField select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--s-sub2color);
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .birthDateSelect {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+  }
+  .birthDateSelect input {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .custom-select{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   margin-bottom: 5px;
+  }
+
+  .custom-select select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--s-sub2color);
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .styled-select select option[value=""] {
+    color: var(--s-sub2color);
+}
+
+  .formField input:focus {
+    outline: none;
+  }
+  
+  .formField label {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+  
+
+  button {
+    background-color: var(--s-maincolor) !important; 
+    color: #ffffff !important;
+    font-weight: bold !important;
+    border-radius: 10px;
+    padding: 10px 10px !important;
+    width: 150px !important;
+    height: 40px !important;
+    margin-top:10px!important;
+    margin-bottom:10px !important;
+  }
+  
+  
+  .errorMsg {
+    color: red;
+    margin: 0;
+    align-self: flex-start;
+    font-size: 10pt;
+  }
+  
+  .msgOk {
+    color: green;
+    margin-top: 15px;
+    font-size: 10pt;
+  }
+  
