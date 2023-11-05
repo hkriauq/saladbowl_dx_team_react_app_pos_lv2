@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function LoginForm() {
-  const initialValues = {  mailAddress: "", password: "" };
+  const initialValues = {  mailAddress: "" , password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -23,7 +23,7 @@ function LoginForm() {
     setFormErrors(errors);
     setIsSubmit(true);
     // バリデーションエラーがない場合に画面遷移
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length === 0) { 
       navigate('/app');
     }
   };

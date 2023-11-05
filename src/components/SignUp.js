@@ -19,6 +19,7 @@ function SignUp({onChildData}) {
   const genderText = {female: "女性", male: "男性",};  
   const navigate = useNavigate();
 
+  
   const handleChange = (e) => {
     // console.log(e.target.name);
     const { name, value } = e.target;
@@ -26,12 +27,13 @@ function SignUp({onChildData}) {
     // console.log(formValues);
   };
 
+  //FastAPIが準備できるまでの仮対応！ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isReviewing) {
-      // API設定はここに入れる
-      onChildData(formValues.username);
+      //onChildData(formValues.username);
       navigate('/login'); 
+      onChildData(formValues.username);
     } else {
       const errors = validate(formValues);
       setFormErrors(errors);
@@ -41,6 +43,40 @@ function SignUp({onChildData}) {
       }
     }
   };
+
+  //FastAPIが準備できたら下記に切り替え！  
+  //const api_postUrl =  "http://localhost:8000/register/";
+
+  // ポスト処理　True:/loginへ画面遷移、False:エラー処理
+  //const handleSubmit = async (e) => {
+    //e.preventDefault();
+    //if (isReviewing) {
+      //try {
+        //const response = await axios
+          //.post(api_postUrl, formValues) // FastAPIのエンドポイントURLに置き換え
+          //.then((response) => {
+            //const result = response.data;
+            //if (result.check) {
+              //navigate('/login');
+            //} else {
+              //console.error("POSTエラー");
+            //}
+          //})
+          //.catch((error) => {
+            //console.error('リクエストエラー:', error);
+          //});
+      //} catch (error) {
+        //console.error('エラー:', error);
+      //}
+    //} else {
+      //const errors = validate(formValues);
+      //setFormErrors(errors);
+      //setIsSubmit(true);
+      //if (Object.keys(errors).length === 0) {
+        //setIsReviewing(true);
+      //}
+    //}
+  //};
 
   useEffect(() => {
     console.log(formErrors);
@@ -224,7 +260,7 @@ function SignUp({onChildData}) {
                 className="submitButton"
               >
                 {isSubmit ? "入力確認" : "登録"}
-              </Button>
+          </Button>
             </>
           )}
         </div>
@@ -235,54 +271,3 @@ function SignUp({onChildData}) {
 
 
 export default SignUp;
-
-
-
-//FastAPI側の処理イメージ
-//class UserCreate(BaseModel):
-//username: str
-//mailAddress: str
-//birthDate: str
-//gender: str
-//password: str
-
-//@app.post("/create_user/")
-//def create_user(user: UserCreate):
-//# ユーザーをデータベースに保存または他の処理を行う
-//# userオブジェクトにはフォームから受け取ったデータが含まれています
-//# バックエンドの処理を追加
-//# レスポンスを返す
-//return {"message": "ユーザーが正常に作成されました"}
-
-
-
-//React側の処理イメージ
-//const handleSubmit = async (e) => {
-  //e.preventDefault();
-  //if (isReviewing) {
-    //try {
-      //const response = await axios.post("http://your-fastapi-server-url/create_user/", formValues, {
-        //headers: {
-          //"Content-Type": "application/json",
-        //},
-      //});
-
-      //if (response.status === 200) {
-        // ユーザーが正常に作成された場合
-        //navigate('/app');
-      //} else {
-        // エラーの場合
-        //console.error("ユーザーの作成に失敗しました");
-      //}
-    //} catch (error) {
-      //console.error("リクエストエラー:", error);
-    //}
-  //} else {
-    //const errors = validate(formValues);
-    //setFormErrors(errors);
-    //setIsSubmit(true);
-    //if (Object.keys(errors).length === 0) {
-      //setIsReviewing(true);
-    //}
-  //}
-//};

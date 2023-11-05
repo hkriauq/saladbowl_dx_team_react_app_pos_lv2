@@ -62,7 +62,7 @@ function CartItems ({ cartItems , onCartChange }) {
         prd_cd: item.code,
         prd_name: item.product,
         prd_price: item.price,
-        quantity: item.quantity,
+        //quantity: item.quantity,
       };
     });
 

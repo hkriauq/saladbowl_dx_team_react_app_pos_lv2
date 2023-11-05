@@ -48,7 +48,7 @@ function App() {
     setFormValues({ username });
   };
   // ログインが成功した際に isLoggedIn を true にし、ユーザー名を設定
-  //const handleLogin = (username) => {
+  //const handleRegister4 = (username) => {
     //setIsLoggedIn(true);
     //setFormValues({ username });
   //};
@@ -95,8 +95,8 @@ function App() {
     const codeToSearch = inputCode;
 
     // FastAPIのエンドポイントURLを設定
-    //const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
-    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
+    const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
+    //const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
   
  
     // axiosを使用してFastAPIにリクエストを送信
@@ -206,19 +206,28 @@ function App() {
           <Route 
             path="/login" 
             element={
-                <LoginForm onRegister={handleRegister1} isLoggedIn={isLoggedIn} formValues={formValues}  />
+                <LoginForm 
+                 onRegister={handleRegister1}
+                 isLoggedIn={isLoggedIn} 
+                 formValues={formValues} 
+                 />
             }
           />
           <Route 
             path="/" 
             element={
-                <SignUp onRegister={handleRegister2} onChildData={handleRegister3} />
+                <SignUp 
+                 onRegister={handleRegister2} 
+                 onChildData={handleRegister3} 
+                 />
             }
           />
           <Route 
             path="/cart" 
             element={
-                <CartItems cartItems={cartItems} onCartChange={setCartItems} />
+                <CartItems 
+                 cartItems={cartItems} 
+                 onCartChange={setCartItems} />
             }
           />
           <Route
