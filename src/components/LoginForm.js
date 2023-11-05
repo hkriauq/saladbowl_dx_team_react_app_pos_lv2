@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
 
 
 function LoginForm() {
@@ -8,6 +9,7 @@ function LoginForm() {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [usrName,setUsrName] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,16 +19,39 @@ function LoginForm() {
     // console.log(formValues);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = validate(formValues);
-    setFormErrors(errors);
-    setIsSubmit(true);
+  //FastAPIが準備できるまでの仮対応！ 
+  //const handleSubmit = (e) => {
+    //e.preventDefault();
+    //const errors = validate(formValues);
+    //setFormErrors(errors);
+    //setIsSubmit(true);
     // バリデーションエラーがない場合に画面遷移
-    if (Object.keys(errors).length === 0) { 
-      navigate('/app');
+    //if (Object.keys(errors).length === 0) { 
+      //navigate('/app');
+    //}
+  //};
+
+  //FastAPIが準備できたら下記に切り替え！  
+  const api_postUrl =  "http://localhost:8000/login/";
+
+  // ポスト処理　True:/appへ画面遷移、False:エラー処理
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(api_postUrl, formValues);
+      const result = response.data;
+      if (result.check) {
+        const usrName = result.usr_name; // responseでusr_nameの値を取得
+        navigate('/app');
+        setUsrName(usrName);
+      } else {
+        console.error("POSTエラー");
+      }
+    } catch (error) {
+      console.error('リクエストエラー:', error);
     }
   };
+
 
   useEffect(() => {
     console.log(formErrors);

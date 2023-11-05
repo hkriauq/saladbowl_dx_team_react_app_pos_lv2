@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import axios from "axios"; 
 
-function SignUp({onChildData}) {
+function SignUp() {
   const initialValues = {
     username: "",
     mailAddress: "",
@@ -33,7 +33,6 @@ function SignUp({onChildData}) {
     if (isReviewing) {
       //onChildData(formValues.username);
       navigate('/login'); 
-      onChildData(formValues.username);
     } else {
       const errors = validate(formValues);
       setFormErrors(errors);
@@ -53,7 +52,7 @@ function SignUp({onChildData}) {
     //if (isReviewing) {
       //try {
         //const response = await axios
-          //.post(api_postUrl, formValues) // FastAPIのエンドポイントURLに置き換え
+          //.post(api_postUrl, formValues)
           //.then((response) => {
             //const result = response.data;
             //if (result.check) {

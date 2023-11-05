@@ -17,7 +17,7 @@ import Badge from '@mui/material/Badge';
 
 
 
-function Header({ isLoggedIn , setIsLoggedIn, formValues , cartItemCount }) {
+function Header({ isLoggedIn , setIsLoggedIn , cartItemCount ,usrName }) {
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ function Header({ isLoggedIn , setIsLoggedIn, formValues , cartItemCount }) {
 
           <div className="Login_username" style={{ display: 'flex', alignItems: 'center', fontSize: '11pt', fontWeight: 'bold', padding : '20px' }}>
              {isLoggedIn ? (
-                <div>Hello! {formValues.username} さん</div>
+                <div>Hello! {usrName}  さん</div>
                ) : (
                 <div>Hello! ゲストさん</div>
                )}

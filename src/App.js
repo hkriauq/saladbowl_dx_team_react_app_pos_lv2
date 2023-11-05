@@ -43,9 +43,9 @@ function App() {
     navigate("/");
   };
   // 新規登録が成功した際に isLoggedIn を true にし、ユーザー名を設定
-  const handleRegister3 = (username) => {
+  const handleRegister3 = (usrName) => {
     setIsLoggedIn(true);
-    setFormValues({ username });
+    setFormValues({usrName});
   };
   // ログインが成功した際に isLoggedIn を true にし、ユーザー名を設定
   //const handleRegister4 = (username) => {
@@ -95,8 +95,8 @@ function App() {
     const codeToSearch = inputCode;
 
     // FastAPIのエンドポイントURLを設定
-    const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
-    //const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
+    //const apiUrl = `http://localhost:8000/product/?code=${codeToSearch}`;
+    const apiUrl = `https://webapp-class1to4-6.azurewebsites.net/product/?code=${codeToSearch}`;
   
  
     // axiosを使用してFastAPIにリクエストを送信
@@ -197,7 +197,8 @@ function App() {
            isLoggedIn={isLoggedIn} 
            setIsLoggedIn={setIsLoggedIn}
            formValues={formValues}
-           cartItemCount={cartItems.length} />
+           cartItemCount={cartItems.length}
+           onChildData={handleRegister3} />
       </header>
 
       <div className="App-body">
