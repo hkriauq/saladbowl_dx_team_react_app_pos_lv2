@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import axios from "axios"; 
 
-function SignUp() {
+function SignUp({onChildData}) {
   const initialValues = {
     username: "",
     mailAddress: "",
@@ -30,7 +30,8 @@ function SignUp() {
     e.preventDefault();
     if (isReviewing) {
       // API設定はここに入れる
-      navigate('/app'); 
+      onChildData(formValues.username);
+      navigate('/login'); 
     } else {
       const errors = validate(formValues);
       setFormErrors(errors);
@@ -68,8 +69,8 @@ function SignUp() {
       errors.username = "ユーザー名を入力してください";
     } else if (!regex1.test(values.username)) {
       errors.username = "ユーザー名にスペースが入っています";
-    } else if (values.username.length < 6 || values.username.length > 30) {
-      errors.username = "ユーザー名は6文字以上30文字以内で入力してください";
+    } else if (values.username.length < 4 || values.username.length > 50) {
+      errors.username = "ユーザー名は4文字以上50文字以内で入力してください";
     }
     if (!values.mailAddress) {
       errors.mailAddress = "メールアドレスを入力してください";
@@ -102,11 +103,11 @@ function SignUp() {
       errors.gender = "性別を選択してください";
     }
     if (!values.password) {
-      errors.password = "パスワードを入力してください。";
+      errors.password = "パスワードを入力してください";
     } else if (values.password.length < 4) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
-    } else if (values.password.length > 15) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
+      errors.password = "4文字以上64文字以下のパスワードを入力してください";
+    } else if (values.password.length > 64) {
+      errors.password = "4文字以上64文字以下のパスワードを入力してください";
     }
     return errors;
   };

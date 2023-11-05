@@ -1,49 +1,89 @@
 .Container_cartItems {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  min-width: 450px;
-}
-
-.Container_cartItems > div {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #CCCCCC; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  min-width: 550px;
+  font-family: "Helvetica", sans-serif !important;
 }
 
-.Container_cartItems > div:first-child {
+.Container_cartItems h5{
+  color:var(--s-maincolor)!important;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.Container_cartItemsList {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #CCCCCC; 
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.Container_cartItemsList > div:first-child {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.Container_cartItems h5 {
-  text-align: left;
-  margin-top: 16px;
-}
 
-.Container_cartItems p {
+.Container_cartItemsList p {
   margin: 0;
-  padding: 4px;
+  padding: 8px;
 }
 
-.Container_cartItems > div:not(:last-child) {
-  margin-bottom: 8px;
+.Container_cartItemsList > div:not(:last-child) {
+  margin-bottom: 10px;
 }
 
-.Container_cartItems p {
+.Container_cartItemsList  p {
   flex: 1;
   text-align: left;
 }
 
-.Container_cartItems p:first-child {
-  flex: 2.5;
+.Container_cartItemsList p:first-child {
+  flex: 6;
   text-align: left;
 }
 
-.Container_cartItems p:last-child {
+.Container_cartItemsList p:last-child {
   text-align: right;
 }
+
+
+.Container_cartItems_Error{
+  margin:20px 10px;
+}
+
+.MuiButton-contained {
+  display: block;
+  background-color: var(--s-maincolor); 
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 10px ;
+  width: 150px ;
+  height: 40px;
+  margin:20px 10px ;
+  align-items: center;
+  text-align: center;
+}
+
+.Container_cartItemsList .delete-button {
+  border: 1px solid var(--s-maincolor) !important; 
+  color: var(--s-maincolor) !important; /* テキストカラー（赤色） */
+  background-color: #ffffff!important; 
+  font-size: 11px!important; /* フォントサイズを調整 */
+  padding: 0px!important; /* パディングを調整 */
+  width: 5px !important;
+  height: 30px!important;
+}
+
+
+
+
+

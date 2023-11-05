@@ -52,9 +52,9 @@ function LoginForm() {
     if (!values.password) {
       errors.password = "パスワードを入力してください。";
     } else if (values.password.length < 4) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
-    } else if (values.password.length > 15) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
+      errors.password = "4文字以上64文字以下のパスワードを入力してください";
+    } else if (values.password.length > 64) {
+      errors.password = "4文字以上64文字以下のパスワードを入力してください";
     }
     return errors;
   };
@@ -97,7 +97,7 @@ function LoginForm() {
      
           >ログイン</Button>
 
-        <Button onClick={() => navigate('/signup')}>新規登録</Button>
+        <Button onClick={() => navigate('/')}>新規登録</Button>
         </div>
       </form>
     </div>
