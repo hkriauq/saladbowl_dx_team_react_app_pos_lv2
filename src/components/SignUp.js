@@ -18,14 +18,26 @@ function SignUp() {
   const [isReviewing, setIsReviewing] = useState(false);
   const genderText = {female: "女性", male: "男性",};  
   const navigate = useNavigate();
+  const genderValues = {
+    "": "", // 隠しオプションは空の文字列として設定
+    "female": "1",
+    "male": "2",
+    "other": "3",
+  };
 
   
   const handleChange = (e) => {
     // console.log(e.target.name);
     const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    // console.log(formValues);
+    if (name === "gender") {
+      setFormValues({ ...formValues, [name]: genderValues[value] });// genderの値の変換・更新
+    } else if (name === "birthYear" || name === "birthMonth" || name === "birthDay") {
+      setFormValues({ ...formValues, [name]: parseInt(value, 10) });
+    } else {
+      setFormValues({ ...formValues, [name]: value });
+    }
   };
+
 
   //FastAPIが準備できるまでの仮対応！ 
   const handleSubmit = async (e) => {
@@ -146,6 +158,7 @@ function SignUp() {
     }
     return errors;
   };
+
 
   return (
     <div className="formContainer">

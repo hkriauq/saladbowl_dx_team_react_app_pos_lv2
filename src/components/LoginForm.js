@@ -12,45 +12,46 @@ function LoginForm() {
   const [usrName,setUsrName] = useState(false);
   const navigate = useNavigate();
 
+  //フォームの入力が変更されたときにformValuesを更新、保存
   const handleChange = (e) => {
-    // console.log(e.target.name);
+    console.log(e.target.name);
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    // console.log(formValues);
+    console.log(formValues);
   };
 
   //FastAPIが準備できるまでの仮対応！ 
-  //const handleSubmit = (e) => {
-    //e.preventDefault();
-    //const errors = validate(formValues);
-    //setFormErrors(errors);
-    //setIsSubmit(true);
-    // バリデーションエラーがない場合に画面遷移
-    //if (Object.keys(errors).length === 0) { 
-      //navigate('/app');
-    //}
-  //};
-
-  //FastAPIが準備できたら下記に切り替え！  
-  const api_postUrl =  "http://localhost:8000/login/";
-
-  // ポスト処理　True:/appへ画面遷移、False:エラー処理
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(api_postUrl, formValues);
-      const result = response.data;
-      if (result.check) {
-        const usrName = result.usr_name; // responseでusr_nameの値を取得
-        navigate('/app');
-        setUsrName(usrName);
-      } else {
-        console.error("POSTエラー");
-      }
-    } catch (error) {
-      console.error('リクエストエラー:', error);
+    const errors = validate(formValues);
+    setFormErrors(errors);
+    setIsSubmit(true);
+    // バリデーションエラーがない場合に画面遷移
+    if (Object.keys(errors).length === 0) { 
+      navigate('/app');
     }
   };
+
+  //FastAPIが準備できたら下記に切り替え！  
+  //const api_postUrl =  "http://localhost:8000/login/";
+
+  // ポスト処理　True:/appへ画面遷移、False:エラー処理
+  //const handleSubmit = async (e) => {
+    //e.preventDefault();
+    //try {
+      //const response = await axios.post(api_postUrl, formValues);
+      //const result = response.data;
+      //if (result.check) {
+        //const usrName = result.usr_name; // responseでusr_nameの値を取得
+        //navigate('/app');
+        //setUsrName(usrName);
+      //} else {
+        //console.error("POSTエラー");
+      //}
+    //} catch (error) {
+      //console.error('リクエストエラー:', error);
+    //}
+  //};
 
 
   useEffect(() => {
