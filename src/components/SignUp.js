@@ -25,19 +25,18 @@ function SignUp() {
     "other": "3",
   };
 
-  
+  //フォームの入力が変更されたときにformValuesを更新、入力値を変換して保存
   const handleChange = (e) => {
-    // console.log(e.target.name);
+    console.log(e.target.name);
     const { name, value } = e.target;
     if (name === "gender") {
       setFormValues({ ...formValues, [name]: genderValues[value] });// genderの値の変換・更新
-    } else if (name === "birthYear" || name === "birthMonth" || name === "birthDay") {
-      setFormValues({ ...formValues, [name]: parseInt(value, 10) });
+    //} else if (name === "birthYear" || name === "birthMonth" || name === "birthDay") {
+      //setFormValues({ ...formValues, [name]: parseInt(value.replace(/^0+/, ""), 10) });// 生年月日の値を整数に変換
     } else {
       setFormValues({ ...formValues, [name]: value });
     }
   };
-
 
   //FastAPIが準備できるまでの仮対応！ 
   const handleSubmit = async (e) => {
@@ -210,7 +209,7 @@ function SignUp() {
             <label>生年月日</label>
             <div className="birthDateSelect">
               <input
-                type="text"
+                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
                 inputMode="numeric" 
                 name="birthYear"
                 placeholder="年"
@@ -218,7 +217,7 @@ function SignUp() {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
                 inputMode="numeric" 
                 name="birthMonth"
                 placeholder="月"
@@ -226,7 +225,7 @@ function SignUp() {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
                 inputMode="numeric" 
                 name="birthDay"
                 placeholder="日"
