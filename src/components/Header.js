@@ -76,7 +76,7 @@ function Header({ isLoggedIn , setIsLoggedIn , cartItemCount ,usrName }) {
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}  style={{ fontFamily: '"Helvetica", sans-serif',fontSize: '14pt',fontWeight: 'bold'}}>
+          <Typography  component="div" sx={{ flexGrow: 1 }}  style={{ display: 'flex',fontFamily: '"Helvetica", sans-serif',fontSize: '14pt',fontWeight: 'bold', marginLeft:20}}>
            <div>SALADBOWL App</div>
           </Typography>
 

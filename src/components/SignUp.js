@@ -30,54 +30,19 @@ function SignUp() {
     console.log(e.target.name);
     const { name, value } = e.target;
     if (name === "gender") {
-      setFormValues({ ...formValues, [name]: genderValues[value] });// genderの値の変換・更新
-    //} else if (name === "birthYear" || name === "birthMonth" || name === "birthDay") {
-      //setFormValues({ ...formValues, [name]: parseInt(value.replace(/^0+/, ""), 10) });// 生年月日の値を整数に変換
+      // genderの値の変換・更新
+      setFormValues({ ...formValues, [name]: genderValues[value] });
     } else {
       setFormValues({ ...formValues, [name]: value });
     }
   };
 
   //FastAPIが準備できるまでの仮対応！ 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (isReviewing) {
-      //onChildData(formValues.username);
-      navigate('/login'); 
-    } else {
-      const errors = validate(formValues);
-      setFormErrors(errors);
-      setIsSubmit(true);
-      if (Object.keys(errors).length === 0) {
-        setIsReviewing(true);
-      }
-    }
-  };
-
-  //FastAPIが準備できたら下記に切り替え！  
-  //const api_postUrl =  "http://localhost:8000/register/";
-
-  // ポスト処理　True:/loginへ画面遷移、False:エラー処理
   //const handleSubmit = async (e) => {
     //e.preventDefault();
     //if (isReviewing) {
-      //try {
-        //const response = await axios
-          //.post(api_postUrl, formValues)
-          //.then((response) => {
-            //const result = response.data;
-            //if (result.check) {
-              //navigate('/login');
-            //} else {
-              //console.error("POSTエラー");
-            //}
-          //})
-          //.catch((error) => {
-            //console.error('リクエストエラー:', error);
-          //});
-      //} catch (error) {
-        //console.error('エラー:', error);
-      //}
+      ////onChildData(formValues.username);
+      //navigate('/login'); 
     //} else {
       //const errors = validate(formValues);
       //setFormErrors(errors);
@@ -87,6 +52,40 @@ function SignUp() {
       //}
     //}
   //};
+
+  //FastAPIが準備できたら下記に切り替え！  
+  const api_postUrl =  "http://localhost:8000/register/";
+
+  // ポスト処理　True:/loginへ画面遷移、False:エラー処理
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isReviewing) {
+      try {
+        const response = await axios
+          .post(api_postUrl, formValues)
+          .then((response) => {
+            const result = response.data;
+            if (result.check) {
+              navigate('/login');
+            } else {
+              console.error("POSTエラー");
+            }
+          })
+          .catch((error) => {
+            console.error('リクエストエラー:', error);
+          });
+      } catch (error) {
+        console.error('エラー:', error);
+      }
+    } else {
+      const errors = validate(formValues);
+      setFormErrors(errors);
+      setIsSubmit(true);
+      if (Object.keys(errors).length === 0) {
+        setIsReviewing(true);
+      }
+    }
+  };
 
   useEffect(() => {
     console.log(formErrors);
@@ -209,7 +208,7 @@ function SignUp() {
             <label>生年月日</label>
             <div className="birthDateSelect">
               <input
-                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
+                type="text"
                 inputMode="numeric" 
                 name="birthYear"
                 placeholder="年"
@@ -217,7 +216,7 @@ function SignUp() {
                 onChange={handleChange}
               />
               <input
-                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
+                type="text"
                 inputMode="numeric" 
                 name="birthMonth"
                 placeholder="月"
@@ -225,7 +224,7 @@ function SignUp() {
                 onChange={handleChange}
               />
               <input
-                type="text" // typeをnumberに変更すると整数のみ。別途範囲を指定する必要あり。
+                type="text"
                 inputMode="numeric" 
                 name="birthDay"
                 placeholder="日"
