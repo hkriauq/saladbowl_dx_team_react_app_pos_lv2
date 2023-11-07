@@ -43,18 +43,12 @@ function App() {
   const handleRegister2 = () => {
     navigate("/");
   };
-  // ログイン成功時に呼ばれる関数
+  // ログイン成功時にisLoggedIn を true にし、ユーザー名を設定
   const handleLogin = (usrName) => {
     setIsLoggedIn(true);
     setUsrName(usrName);
   };
 
-
-  // ログインが成功した際に isLoggedIn を true にし、ユーザー名を設定
-  //const handleRegister4 = (username) => {
-    //setIsLoggedIn(true);
-    //setFormValues({ username });
-  //};
 
 
   //2. app

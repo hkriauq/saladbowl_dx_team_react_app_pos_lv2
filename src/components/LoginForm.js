@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-function LoginForm({ onLogin }) {
+function LoginForm({ onLogin ,setIsLoggedIn}) {
   const initialValues = {  mailAddress: "" , password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -46,6 +46,7 @@ function LoginForm({ onLogin }) {
         const usrName = result.usr_name; // responseでusr_nameの値を取得
         navigate('/app');
         onLogin(usrName);
+        setIsLoggedIn(true);
       } else {
         console.error("POSTエラー");
       }
