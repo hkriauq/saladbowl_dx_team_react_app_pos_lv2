@@ -24,6 +24,7 @@ function App() {
   const axiosInstance = axios.create({withCredentials: true});
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [formValues, setFormValues] = useState({ username: '' }); 
+  const [usrName, setUsrName] = useState({ username: '' }); 
   const navigate = useNavigate();
   //CartItems用
   //const [productList, setProductList] = useState([]);
@@ -42,11 +43,13 @@ function App() {
   const handleRegister2 = () => {
     navigate("/");
   };
-  // 新規登録が成功した際に isLoggedIn を true にし、ユーザー名を設定
-  const handleRegister3 = (usrName) => {
+  // ログイン成功時に呼ばれる関数
+  const handleLogin = (usrName) => {
     setIsLoggedIn(true);
-    setFormValues({usrName});
+    setUsrName(usrName);
   };
+
+
   // ログインが成功した際に isLoggedIn を true にし、ユーザー名を設定
   //const handleRegister4 = (username) => {
     //setIsLoggedIn(true);
@@ -198,7 +201,7 @@ function App() {
            setIsLoggedIn={setIsLoggedIn}
            formValues={formValues}
            cartItemCount={cartItems.length}
-           onChildData={handleRegister3} />
+           usrName={usrName}  />
       </header>
 
       <div className="App-body">
@@ -211,6 +214,7 @@ function App() {
                  onRegister={handleRegister1}
                  isLoggedIn={isLoggedIn} 
                  formValues={formValues} 
+                 onLogin={handleLogin} 
                  />
             }
           />
