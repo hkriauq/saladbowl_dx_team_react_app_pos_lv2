@@ -33,7 +33,8 @@ function LoginForm() {
   //};
 
   //FastAPIが準備できたら下記に切り替え！  
-  const api_postUrl =  "http://localhost:8000/login/";
+  //const api_postUrl =  "http://localhost:8000/login/";
+  const api_postUrl =  "https://webapp-class1to4-6.azurewebsites.net/login/";
 
   // ポスト処理　True:/appへ画面遷移、False:エラー処理
   const handleSubmit = async (e) => {

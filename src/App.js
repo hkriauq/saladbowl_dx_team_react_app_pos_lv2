@@ -219,7 +219,6 @@ function App() {
             element={
                 <SignUp 
                  onRegister={handleRegister2} 
-                 onChildData={handleRegister3} 
                  />
             }
           />

@@ -8,7 +8,9 @@ function SignUp() {
   const initialValues = {
     username: "",
     mailAddress: "",
-    birthDate: "",
+    birthDay: "",
+    birthMonth: "",
+    birthYear: "",
     gender: "",
     password: "",
   };
@@ -54,7 +56,8 @@ function SignUp() {
   //};
 
   //FastAPIが準備できたら下記に切り替え！  
-  const api_postUrl =  "http://localhost:8000/register/";
+  //const api_postUrl =  "http://localhost:8000/register/";
+  const api_postUrl =  "https://webapp-class1to4-6.azurewebsites.net/register/";
 
   // ポスト処理　True:/loginへ画面遷移、False:エラー処理
   const handleSubmit = async (e) => {
